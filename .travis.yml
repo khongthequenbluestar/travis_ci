@@ -15,11 +15,11 @@ before_script:
 
 script:
   - docker --version # print the version for logging
-  - docker build -t simple-node .
-  #- docker build -t simple-node --build-arg NAME=${NAME} .
-  - docker tag simple-node "$DOCKER_USERNAME"/simple-node:latest
+  - docker build -t udacity-travis_ci .
+  #- docker build -t udacity-travis_ci --build-arg NAME=${NAME} .
+  - docker tag udacity-travis_ci "$DOCKER_USERNAME"/udacity-travis_ci:latest
 
 # Tasks to perform after the process is successful. Formatting the Docker username and password as below enables you to programmatically log in without having the password exposed in logs.
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push "$DOCKER_USERNAME"/simple-node
+  - docker push "$DOCKER_USERNAME"/udacity-travis_ci
